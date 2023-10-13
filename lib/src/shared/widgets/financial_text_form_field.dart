@@ -21,6 +21,11 @@ class FinancialTextFormField extends StatelessWidget {
     final theme = Theme.of(context);
     final bodyMedium = theme.textTheme.bodyMedium;
     return TextFormField(
+      controller: controller,
+      onChanged: onChanged,
+      validator: validator,
+      onTap: onTap,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: bodyMedium?.copyWith(

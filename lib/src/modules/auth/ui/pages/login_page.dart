@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../shared/images.dart';
+import '../../../../shared/widgets/financial_password_form_field.dart';
 import '../../../../shared/widgets/keyboard_dismissible.dart';
+import '../../interactor/stores/login/login_store.dart';
 import '../widgets/login_button.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final LoginStore store;
+  const LoginPage(this.store, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,11 +90,13 @@ class LoginPage extends StatelessWidget {
                           ),
                           FinancialTextFormField(
                             label: 'E-mail',
-                            onChanged: (value) {},
+                            onChanged: store.changeEmail,
+                            validator: (_) => store.value.email.message,
                           ),
-                          FinancialTextFormField(
+                          FinancialPasswordTextFormField(
                             label: 'Senha',
-                            onChanged: (value) {},
+                            onChanged: store.changePassword,
+                            validator: (_) => store.value.password.message,
                           ),
                         ],
                       ),
@@ -101,7 +106,7 @@ class LoginPage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.center,
                         child: LoginButton(
-                          onPressed: () {},
+                          onPressed: store.login,
                         ),
                       ),
                     )
