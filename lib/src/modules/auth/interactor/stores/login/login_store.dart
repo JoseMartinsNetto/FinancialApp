@@ -1,16 +1,24 @@
+import 'package:financial_app/src/modules/auth/interactor/dto/login.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../../core/value_objects.dart';
+import '../../repositories/auth_repository.dart';
 import '../../states/auth_state.dart';
 
 part 'login_store_state.dart';
 
 class LoginStore extends ValueNotifier<LoginStoreState> {
-  LoginStore() : super(const LoginStoreState());
+  final AuthRepository authRepository;
 
-  void changeEmail(String? newEmail) => value = value.copyWith(email: Email(newEmail ?? ''));
+  LoginStore(this.authRepository) : super(const LoginStoreState());
+
+  void changeEmail(String? newEmail) =>
+      value = value.copyWith(email: Email(newEmail ?? ''));
+
   void changePassword(String? newPassword) =>
       value = value.copyWith(password: PasswordForLogin(newPassword ?? ''));
 
-  void login() async {}
+  void login() async {
+    await authRepository.login(value.loginDto);
+  }
 }

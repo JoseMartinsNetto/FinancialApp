@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'modules/settings/interector/settings_controller.dart';
-import 'shared/helpers/firebase_helper.dart';
+import 'core/helpers/firebase_helper.dart';
 import 'shared/theme/theme.dart';
 
 class AppWidget extends StatefulWidget {

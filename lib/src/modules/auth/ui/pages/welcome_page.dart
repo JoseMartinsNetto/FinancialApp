@@ -57,7 +57,8 @@ class WelcomePage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Align(
                   alignment: Alignment.center,
                   child: LoginButton(
@@ -70,6 +71,5 @@ class WelcomePage extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

@@ -5,11 +5,12 @@ class LoginStoreState extends Equatable {
   final PasswordForLogin password;
   final AuthState state;
 
-  const LoginStoreState({
-    this.email = const Email(''),
-    this.password = const PasswordForLogin(''),
-    this.state = const InitialAuthState()
-  });
+  const LoginStoreState(
+      {this.email = const Email(''),
+      this.password = const PasswordForLogin(''),
+      this.state = const InitialAuthState()});
+
+  LoginDTO get loginDto => LoginDTO(email: email, password: password);
 
   LoginStoreState copyWith({
     AuthState? state,
