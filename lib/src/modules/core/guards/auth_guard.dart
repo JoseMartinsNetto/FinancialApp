@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../modules/auth/interactor/repositories/auth_repository.dart';
+import '../../auth/interactor/repositories/auth_repository.dart';
 
 class AuthGuard extends RouteGuard {
   final _auth = Modular.get<AuthRepository>();

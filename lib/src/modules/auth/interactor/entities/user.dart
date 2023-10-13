@@ -1,4 +1,4 @@
-import '../../../../core/entity/entity.dart';
+import '../../../core/entity/entity.dart';
 
 class UserEntity extends Entity {
   final String id;

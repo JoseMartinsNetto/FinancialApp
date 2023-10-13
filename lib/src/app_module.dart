@@ -1,5 +1,5 @@
-import 'package:financial_app/src/core/core_module.dart';
-import 'package:financial_app/src/core/guards/auth_guard.dart';
+import 'package:financial_app/src/modules/core/core_module.dart';
+import 'package:financial_app/src/modules/core/guards/auth_guard.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'modules/auth/auth_module.dart';

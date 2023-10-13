@@ -1,4 +1,4 @@
-import 'package:financial_app/src/core/http_client/http_client.dart';
+import 'package:financial_app/src/modules/core/http_client/http_client.dart';
 import 'package:uno/uno.dart';
 
 class UnoHttpClientImpl implements HttpClient {
