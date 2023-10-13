@@ -1,6 +1,8 @@
+import 'package:financial_app/src/core/state/success.dart';
 import 'package:financial_app/src/shared/icons.dart';
 import 'package:financial_app/src/shared/widgets/financial_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../shared/images.dart';
@@ -20,6 +22,25 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginStore get store => widget.store;
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+
+    store.addListener(() {
+      if(store.value.state is SuccessState) {
+        Modular.to.pushNamed('/welcome');
+      }
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    store.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

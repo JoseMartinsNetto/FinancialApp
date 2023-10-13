@@ -2,6 +2,7 @@ import 'package:financial_app/src/modules/auth/ui/pages/login_page.dart';
 import 'package:financial_app/src/modules/auth/ui/pages/welcome_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../core/core_module.dart';
 import 'interactor/stores/login/login_store.dart';
 
 class AuthModule extends Module {
@@ -21,4 +22,9 @@ class AuthModule extends Module {
 
     super.binds(i);
   }
+
+  @override
+  List<Module> get imports => [
+        CoreModule(),
+      ];
 }

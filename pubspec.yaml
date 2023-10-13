@@ -22,6 +22,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   equatable: ^2.0.5
+  uno: ^1.1.1
 
 dev_dependencies:
   flutter_test:
