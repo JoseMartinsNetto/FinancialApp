@@ -18,10 +18,6 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2)).then((_) {
-      Modular.to.pushReplacementNamed('/auth');
-    });
-
     store.addListener(() {
       final state = store.value.state;
 
@@ -31,6 +27,8 @@ class _SplashPageState extends State<SplashPage> {
         Modular.to.pushReplacementNamed('/auth');
       }
     });
+
+    store.checkIfLogged();
 
     super.initState();
   }

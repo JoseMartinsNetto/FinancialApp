@@ -12,6 +12,8 @@ class SplashStore extends ValueNotifier<SplashStoreState> {
   SplashStore(this._authRepository) : super(const SplashStoreState());
 
   void checkIfLogged() async {
+    await Future.delayed(const Duration(seconds: 2));
+
     value = value.copyWith(state: const SplashLoadingState());
 
     final user = _authRepository.getUser();

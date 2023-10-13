@@ -12,8 +12,8 @@ class AuthModule extends Module {
 
   @override
   void routes(RouteManager r) {
-    r.child('/', child: (ctx) => LoginPage(ctx.read()));
-    r.child('/welcome', child: (ctx) => const WelcomePage());
+    r.child('/', child: (ctx) => const WelcomePage());
+    r.child('/login', child: (ctx) => LoginPage(ctx.read()));
 
     super.routes(r);
   }
