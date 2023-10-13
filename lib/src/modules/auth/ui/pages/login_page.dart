@@ -1,4 +1,4 @@
-import 'package:financial_app/src/core/state/success.dart';
+import 'package:financial_app/src/modules/auth/interactor/states/auth_state.dart';
 import 'package:financial_app/src/shared/icons.dart';
 import 'package:financial_app/src/shared/widgets/financial_text_form_field.dart';
 import 'package:flutter/material.dart';
@@ -25,9 +25,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-
     store.addListener(() {
-      if(store.value.state is SuccessState) {
+      if (store.value.state is SuccessAuthState) {
         Modular.to.pushNamed('/welcome');
       }
     });
@@ -38,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     store.dispose();
-
     super.dispose();
   }
 
@@ -121,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             FinancialTextFormField(
                               label: 'E-mail',
-                              onChanged: widget.store.changeEmail,
+                              onChanged: store.changeEmail,
                               validator: (_) => store.value.email.message,
                             ),
                             FinancialPasswordTextFormField(
@@ -138,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                           alignment: Alignment.center,
                           child: LoginButton(
                             onPressed: () {
-                              if(formKey.currentState!.validate()) {
+                              if (formKey.currentState!.validate()) {
                                 store.login();
                               }
                             },

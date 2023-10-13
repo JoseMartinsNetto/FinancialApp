@@ -8,10 +8,7 @@ class KeyboardDismissible extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        print('unfocus');
-      },
+      onTap: () => FocusScope.of(context).unfocus(),
       child: child,
     );
   }

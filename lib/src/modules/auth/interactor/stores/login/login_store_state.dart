@@ -3,16 +3,16 @@ part of 'login_store.dart';
 class LoginStoreState extends Equatable {
   final Email email;
   final PasswordForLogin password;
-  final BaseState state;
+  final AuthState state;
 
   const LoginStoreState({
     this.email = const Email(''),
     this.password = const PasswordForLogin(''),
-    this.state = const InitialState()
+    this.state = const InitialAuthState()
   });
 
   LoginStoreState copyWith({
-    BaseState? state,
+    AuthState? state,
     Email? email,
     PasswordForLogin? password,
   }) {
