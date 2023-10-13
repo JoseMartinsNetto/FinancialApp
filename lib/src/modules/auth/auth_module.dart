@@ -4,32 +4,26 @@ import 'package:financial_app/src/modules/auth/ui/pages/welcome_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../core/core_module.dart';
 import 'interactor/repositories/auth_repository.dart';
 import 'interactor/stores/login/login_store.dart';
 
 class AuthModule extends Module {
-  static String routeName = '/';
+  static String routeName = '/auth';
 
   @override
   void routes(RouteManager r) {
-    r.child('/welcome', child: (ctx) => const WelcomePage());
     r.child('/', child: (ctx) => LoginPage(ctx.read()));
+    r.child('/welcome', child: (ctx) => const WelcomePage());
 
     super.routes(r);
   }
 
   @override
-  void binds(Injector i) {
+  void exportedBinds(Injector i) {
     i.add(LoginStore.new);
     i.add<AuthRepository>(FirebaseAuthRepositoryImpl.new);
     i.addInstance(FirebaseAuth.instance);
 
-    super.binds(i);
+    super.exportedBinds(i);
   }
-
-  @override
-  List<Module> get imports => [
-        CoreModule(),
-      ];
 }
