@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'settings_service.dart';
 
-class SettingsController with ChangeNotifier {
+class SettingsController extends ChangeNotifier {
   SettingsController(this._settingsService);
 
   final SettingsService _settingsService;

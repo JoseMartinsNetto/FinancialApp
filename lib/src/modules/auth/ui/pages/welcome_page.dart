@@ -2,6 +2,7 @@ import 'package:financial_app/src/modules/auth/ui/widgets/login_button.dart';
 import 'package:financial_app/src/shared/icons.dart';
 import 'package:financial_app/src/shared/images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
 class WelcomePage extends StatelessWidget {
@@ -59,7 +60,9 @@ class WelcomePage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
                 child: Align(
                   alignment: Alignment.center,
-                  child: LoginButton(onPressed: () {}),
+                  child: LoginButton(
+                    onPressed: () => Modular.to.pushNamed('/auth/login'),
+                  ),
                 ),
               )
             ],
@@ -67,5 +70,6 @@ class WelcomePage extends StatelessWidget {
         ],
       ),
     );
+
   }
 }

@@ -43,7 +43,7 @@ class LoginButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Login',
+              'Entrar',
               style: bodyMedium?.copyWith(
                 fontSize: 20,
                 color: Colors.white,
