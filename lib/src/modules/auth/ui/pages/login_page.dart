@@ -9,9 +9,17 @@ import '../../../../shared/widgets/keyboard_dismissible.dart';
 import '../../interactor/stores/login/login_store.dart';
 import '../widgets/login_button.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final LoginStore store;
   const LoginPage(this.store, {super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  LoginStore get store => widget.store;
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,78 +48,85 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60, top: 80),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          SizedBox(
-                            width: 60,
-                            height: 60,
-                            child: SvgPicture.asset(
-                              AppIcons.logoWhite,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(height: 10),
-                          SizedBox(
-                            width: 200,
-                            child: Text(
-                              'Bem vindo novamente',
-                              style: bodyMedium?.copyWith(
-                                fontSize: 28,
-                                color: Colors.white,
+                Form(
+                  key: formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60, top: 80),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            SizedBox(
+                              width: 60,
+                              height: 60,
+                              child: SvgPicture.asset(
+                                AppIcons.logoWhite,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 40),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            'Entrar',
-                            textAlign: TextAlign.start,
-                            style: bodyMedium?.copyWith(
-                              fontSize: 28,
-                              fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.secondary,
+                            const SizedBox(height: 10),
+                            SizedBox(
+                              width: 200,
+                              child: Text(
+                                'Bem vindo novamente',
+                                style: bodyMedium?.copyWith(
+                                  fontSize: 28,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
-                          FinancialTextFormField(
-                            label: 'E-mail',
-                            onChanged: store.changeEmail,
-                            validator: (_) => store.value.email.message,
-                          ),
-                          FinancialPasswordTextFormField(
-                            label: 'Senha',
-                            onChanged: store.changePassword,
-                            validator: (_) => store.value.password.message,
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: LoginButton(
-                          onPressed: store.login,
+                          ],
                         ),
                       ),
-                    )
-                  ],
-                ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 40),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Text(
+                              'Entrar',
+                              textAlign: TextAlign.start,
+                              style: bodyMedium?.copyWith(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: theme.colorScheme.secondary,
+                              ),
+                            ),
+                            FinancialTextFormField(
+                              label: 'E-mail',
+                              onChanged: widget.store.changeEmail,
+                              validator: (_) => store.value.email.message,
+                            ),
+                            FinancialPasswordTextFormField(
+                              label: 'Senha',
+                              onChanged: store.changePassword,
+                              validator: (_) => store.value.password.message,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: LoginButton(
+                            onPressed: () {
+                              if(formKey.currentState!.validate()) {
+                                store.login();
+                              }
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),
