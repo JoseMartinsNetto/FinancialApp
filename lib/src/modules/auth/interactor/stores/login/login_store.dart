@@ -12,13 +12,19 @@ class LoginStore extends ValueNotifier<LoginStoreState> {
 
   LoginStore(this.authRepository) : super(const LoginStoreState());
 
-  void changeEmail(String? newEmail) =>
-      value = value.copyWith(email: Email(newEmail ?? ''));
+  void changeEmail(String? newEmail) => value = value.copyWith(
+        email: Email(newEmail ?? ''),
+        state: const InitialAuthState(),
+      );
 
-  void changePassword(String? newPassword) =>
-      value = value.copyWith(password: PasswordForLogin(newPassword ?? ''));
+  void changePassword(String? newPassword) => value = value.copyWith(
+        password: PasswordForLogin(newPassword ?? ''),
+        state: const InitialAuthState(),
+      );
 
   void login() async {
-    await authRepository.login(value.loginDto);
+    final newState = await authRepository.login(value.loginDto);
+
+    value = value.copyWith(state: newState);
   }
 }

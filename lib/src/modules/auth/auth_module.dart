@@ -1,6 +1,7 @@
-import 'package:financial_app/src/modules/auth/data/repositories/FirebaseAuthRepositoryImpl.dart';
+import 'package:financial_app/src/modules/auth/data/repositories/firebase_auth_repository_impl.dart';
 import 'package:financial_app/src/modules/auth/ui/pages/login_page.dart';
 import 'package:financial_app/src/modules/auth/ui/pages/welcome_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../core/core_module.dart';
@@ -22,6 +23,7 @@ class AuthModule extends Module {
   void binds(Injector i) {
     i.add(LoginStore.new);
     i.add<AuthRepository>(FirebaseAuthRepositoryImpl.new);
+    i.addInstance(FirebaseAuth.instance);
 
     super.binds(i);
   }

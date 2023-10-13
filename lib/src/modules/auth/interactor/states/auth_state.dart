@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:financial_app/src/modules/auth/interactor/entities/user.dart';
 
 sealed class AuthState extends Equatable {
   const AuthState();
@@ -19,10 +20,11 @@ class LoadingAuthState extends AuthState {
 }
 
 class SuccessAuthState extends AuthState {
-  const SuccessAuthState();
+  final UserEntity user;
+  const SuccessAuthState(this.user);
 
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [user];
 }
 
 class FailureAuthState extends AuthState {

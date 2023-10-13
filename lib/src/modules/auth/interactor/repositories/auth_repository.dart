@@ -1,7 +1,10 @@
+import 'package:financial_app/src/modules/auth/interactor/entities/user.dart';
+
 import '../dto/login.dart';
 import '../states/auth_state.dart';
 
 abstract interface class AuthRepository {
   Future<AuthState> login(LoginDTO dto);
-  Future<AuthState> logout();
+  Future<void> logout();
+  UserEntity? getUser();
 }

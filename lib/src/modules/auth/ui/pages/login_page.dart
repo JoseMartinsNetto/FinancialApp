@@ -26,8 +26,19 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     store.addListener(() {
-      if (store.value.state is SuccessAuthState) {
-        Modular.to.pushNamed('/welcome');
+      final state = store.value.state;
+
+      if (state is FailureAuthState) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(state.message),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+
+      if (state is SuccessAuthState) {
+        Modular.to.pushNamed('/home');
       }
     });
 
