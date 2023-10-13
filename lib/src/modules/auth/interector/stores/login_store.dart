@@ -1,17 +1,17 @@
-import '../../../../core/state/base_state.dart';
-import '../../../../core/value_objects/value_objects.dart';
+import 'package:equatable/equatable.dart';
+import '../../../../core/states.dart';
+import '../../../../core/value_objects.dart';
 
-class AuthState extends BaseState {
+class AuthState extends Equatable {
   final Email email;
   final Password password;
+  final BaseState state;
 
   const AuthState({
     this.email = const Email(''),
     this.password = const Password(''),
+    this.state = const InitialState()
 });
-
-  @override
-  List<Object?> get props => [];
 
   @override
   AuthState copyWith({
@@ -23,4 +23,7 @@ class AuthState extends BaseState {
       password: password ?? this.password
     );
   }
+
+  @override
+  List<Object?> get props => [email, password];
 }
