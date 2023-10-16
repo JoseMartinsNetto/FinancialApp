@@ -1,4 +1,3 @@
-import 'package:financial_app/src/modules/auth/data/adapters/user_adapter.dart';
 import 'package:financial_app/src/modules/auth/interactor/dto/login.dart';
 import 'package:financial_app/src/modules/auth/interactor/entities/user.dart';
 import 'package:financial_app/src/modules/auth/interactor/repositories/user_repository.dart';
@@ -20,7 +19,13 @@ class FirebaseAuthRepositoryImpl implements AuthRepository {
         password: dto.password.value,
       );
 
-      return SuccessAuthState(UserAdapter.fromFirebaseUser(credentials.user));
+      final user = await _userRepository.getUser(credentials.user!.uid);
+
+      if (user != null) {
+        return SuccessAuthState(user);
+      }
+
+      return const FailureAuthState('Usuário não encontrado');
     } on FirebaseAuthException catch (error) {
       return FailureAuthState(error.message ?? 'Error on login');
     }
