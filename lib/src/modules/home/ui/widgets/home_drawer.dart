@@ -5,10 +5,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../shared/icons.dart';
+import '../../../auth/interactor/entities/user.dart';
 import 'drawer_list_tile.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+  final UserEntity user;
+
+  const HomeDrawer({
+    super.key,
+    required this.user,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +27,14 @@ class HomeDrawer extends StatelessWidget {
           const SizedBox(height: 60),
           Row(
             children: [
-              ProfileButton(onPressed: () {}),
+              ProfileButton(
+                image: user.image,
+                onPressed: () {},
+              ),
               Column(
                 children: [
                   Text(
-                    'Emma Ashley',
+                    user.userName,
                     style: bodyMedium?.copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ],

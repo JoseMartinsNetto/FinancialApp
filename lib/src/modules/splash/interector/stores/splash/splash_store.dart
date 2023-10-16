@@ -16,7 +16,7 @@ class SplashStore extends ValueNotifier<SplashStoreState> {
 
     value = value.copyWith(state: const SplashLoadingState());
 
-    final user = _authRepository.getUser();
+    final user = await _authRepository.getUser();
 
     if (user != null) {
       value = value.copyWith(state: const SplashUserLoggedState());

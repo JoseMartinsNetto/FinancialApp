@@ -15,13 +15,14 @@ class ProfileButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: SizedBox(
-        height: 70,
-        width: 70,
-        child: image.isNotEmpty ? Image.network(image) : null,
-        // child: Image.asset(
-        //   image,
-        //   fit: BoxFit.cover,
-        // ),
+        height: 50,
+        width: 50,
+        child: image.isNotEmpty
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Image.network(image, fit: BoxFit.cover),
+              )
+            : null,
       ),
       onPressed: onPressed,
     );
