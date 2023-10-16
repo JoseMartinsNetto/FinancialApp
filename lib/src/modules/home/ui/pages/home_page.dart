@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state, child) {
           return Scaffold(
             appBar: HomeAppBar(user: state.user),
-            drawer:  HomeDrawer(user: state.user),
+            drawer: HomeDrawer(user: state.user),
             body: Stack(
               children: [
                 const TopBackground(),
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Bom dia ${state.user.userName},',
+                        'Bom dia ${state.user.firstName},',
                         style: bodyMedium?.copyWith(
                           color: Colors.white,
                           fontSize: 28,
