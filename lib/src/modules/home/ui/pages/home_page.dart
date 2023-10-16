@@ -36,7 +36,11 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state, child) {
           return Scaffold(
             appBar: HomeAppBar(user: state.user),
-            drawer: HomeDrawer(user: state.user),
+            drawer: HomeDrawer(
+              user: state.user,
+              onLogoutPressed: () {},
+              onProfilePressed: () {},
+            ),
             body: Stack(
               children: [
                 const TopBackground(),
