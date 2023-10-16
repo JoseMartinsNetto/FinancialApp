@@ -6,5 +6,5 @@ import '../states/auth_state.dart';
 abstract interface class AuthRepository {
   Future<AuthState> login(LoginDTO dto);
   Future<void> logout();
-  UserEntity? getUser();
+  Future<UserEntity?> getUser();
 }

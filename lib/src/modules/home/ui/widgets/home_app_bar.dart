@@ -1,9 +1,15 @@
+import 'package:financial_app/src/modules/auth/interactor/entities/user.dart';
 import 'package:flutter/material.dart';
 
 import 'profile_button.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomeAppBar({super.key});
+  final UserEntity user;
+
+  const HomeAppBar({
+    super.key,
+    required this.user,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           Column(
             children: [
               const SizedBox(height: 20),
-              ProfileButton(onPressed: () {}),
+              ProfileButton(
+                image: user.image,
+                onPressed: () {},
+              ),
             ],
           ),
         ],

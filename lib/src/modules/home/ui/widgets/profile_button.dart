@@ -17,10 +17,11 @@ class ProfileButton extends StatelessWidget {
       icon: SizedBox(
         height: 70,
         width: 70,
-        child: Image.asset(
-          image,
-          fit: BoxFit.cover,
-        ),
+        child: image.isNotEmpty ? Image.network(image) : null,
+        // child: Image.asset(
+        //   image,
+        //   fit: BoxFit.cover,
+        // ),
       ),
       onPressed: onPressed,
     );

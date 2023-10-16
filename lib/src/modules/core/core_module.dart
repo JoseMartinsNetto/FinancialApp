@@ -9,6 +9,7 @@ class CoreModule extends Module {
   void exportedBinds(Injector i) {
     i.addInstance<Uno>(UnoFactory()());
     i.add<HttpClient>(UnoHttpClientImpl.new);
+    // i.add()
 
     super.exportedBinds(i);
   }
