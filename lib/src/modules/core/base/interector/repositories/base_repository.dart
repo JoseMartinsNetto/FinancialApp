@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:financial_app/src/modules/core/entity/entity.dart';
+import '../../entity/entity.dart';
 
 abstract class BaseRepository<T extends Entity> {
   final FirebaseFirestore firestore;

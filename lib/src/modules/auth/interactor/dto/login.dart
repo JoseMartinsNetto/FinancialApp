@@ -1,4 +1,4 @@
-import '../../../core/value_objects.dart';
+import '../../../core/base/value_objects.dart';
 
 class LoginDTO {
   final Email email;

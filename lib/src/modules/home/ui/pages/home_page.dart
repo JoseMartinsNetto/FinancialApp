@@ -1,3 +1,4 @@
+import 'package:financial_app/src/modules/core/extensions/double_extension.dart';
 import 'package:financial_app/src/modules/home/interactor/stores/home/home_store.dart';
 import 'package:flutter/material.dart';
 
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                               Text(
-                                'R\$ 0,00',
+                                state.user.balance.toCurrency(),
                                 style: bodyMedium?.copyWith(
                                   color: const Color(0xff2D99FF),
                                   fontSize: 24,

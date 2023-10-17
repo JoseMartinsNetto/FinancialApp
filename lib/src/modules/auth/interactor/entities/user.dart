@@ -1,4 +1,4 @@
-import '../../../core/entity/entity.dart';
+import '../../../core/base/entity/entity.dart';
 
 class UserEntity extends Entity {
   final String id;
@@ -7,6 +7,7 @@ class UserEntity extends Entity {
   final String lastName;
   final String userName;
   final String image;
+  final double balance;
 
   String get fullName => '$firstName $lastName';
 
@@ -16,7 +17,8 @@ class UserEntity extends Entity {
         firstName = '',
         lastName = '',
         userName = '',
-        image = '';
+        image = '',
+        balance = 0.0;
 
   const UserEntity({
     required this.id,
@@ -25,6 +27,7 @@ class UserEntity extends Entity {
     required this.firstName,
     required this.userName,
     required this.lastName,
+    required this.balance,
   });
 
   @override
@@ -32,6 +35,9 @@ class UserEntity extends Entity {
         id,
         email,
         userName,
+        firstName,
+        lastName,
         image,
+        balance,
       ];
 }

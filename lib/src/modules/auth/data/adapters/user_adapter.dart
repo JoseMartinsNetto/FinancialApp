@@ -9,6 +9,7 @@ class UserAdapter {
       userName: json['userName'] ?? '',
       firstName: json['firstName'] ?? '',
       lastName: json['lastName'] ?? '',
+      balance: json['balance'] ?? 0.0,
     );
   }
 }

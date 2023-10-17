@@ -1,4 +1,4 @@
-import 'package:financial_app/src/modules/core/state/base_state.dart';
+import '../../../core/base/state/base_state.dart';
 
 sealed class HomeState extends BaseState {
   const HomeState();
