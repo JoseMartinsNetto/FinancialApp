@@ -1,5 +1,6 @@
 import 'package:financial_app/src/modules/home/ui/widgets/profile_button.dart';
-import 'package:financial_app/src/modules/settings/settiings_module.dart';
+import 'package:financial_app/src/modules/settings/settings_module.dart';
+import 'package:financial_app/src/modules/transactions/transactions_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
@@ -56,7 +57,7 @@ class HomeDrawer extends StatelessWidget {
                   dimension: 20,
                   child: SvgPicture.asset(AppIcons.transaction),
                 ),
-                onPressed: () {},
+                onPressed: () => Modular.to.pushNamed(TransactionsModule.routeName),
               ),
               DrawerListTile(
                 title: 'Configurações',

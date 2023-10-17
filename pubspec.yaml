@@ -7,6 +7,10 @@ environment:
   sdk: '>=3.0.6 <4.0.0'
 
 dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   shared_preferences: ^2.2.1
   flutter_modular: ^6.3.2
   result_dart: ^1.1.0
@@ -17,10 +21,6 @@ dependencies:
   equatable: ^2.0.5
   uno: ^1.1.1
   firebase_auth: ^4.10.1
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
 
 dev_dependencies:
   flutter_test:
