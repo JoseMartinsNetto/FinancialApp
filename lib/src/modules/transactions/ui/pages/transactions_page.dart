@@ -3,7 +3,6 @@ import 'package:financial_app/src/modules/transactions/ui/widgets/transaction_ex
 import 'package:financial_app/src/shared/widgets/general_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../interector/entities/transaction.dart';
 import '../../interector/stores/transaction/transactions_store.dart';
 import '../widgets/transaction_top_card.dart';
 
@@ -41,26 +40,47 @@ class _TransactionsState extends State<TransactionsPage> {
         children: [
           const TransactionTopCard(),
           const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Monitore seus gastos',
-                  style: bodyMedium?.copyWith(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Monitore seus gastos',
+                    style: bodyMedium?.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const TransactionExpanseCard(
-                  transaction: Transaction(
-                    value: 500,
-                    category:
-                        TransactionCategory(color: 'C16A6A', name: 'Mercado'),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: GridView.count(
+                      shrinkWrap: true,
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.7,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      children: const [
+                        TransactionExpanseCard(
+                          value: 500,
+                          category: TransactionCategory(
+                            color: 'C16A6A',
+                            name: 'Mercado',
+                          ),
+                        ),
+                        TransactionExpanseCard(
+                          value: 500,
+                          category: TransactionCategory(
+                            color: 'C16A6A',
+                            name: 'Mercado',
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],
