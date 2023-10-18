@@ -7,12 +7,10 @@ import '../../interector/entities/transaction_category.dart';
 
 class TransactionExpanseCard extends StatelessWidget {
   final TransactionCategory category;
-  final double value;
 
   const TransactionExpanseCard({
     super.key,
     required this.category,
-    required this.value,
   });
 
   @override
@@ -66,7 +64,7 @@ class TransactionExpanseCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  value.toCurrency(),
+                  (category.value ?? 0).toCurrency(),
                   style: bodyMedium?.copyWith(
                     color: color.addBlack(20),
                     fontSize: 20,

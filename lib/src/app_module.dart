@@ -8,12 +8,13 @@ import 'modules/home/home_module.dart';
 import 'modules/settings/interector/settings_controller.dart';
 import 'modules/settings/interector/settings_service.dart';
 import 'modules/settings/settings_module.dart';
+import 'modules/splash/splash_module.dart';
 
 class AppModule extends Module {
   @override
   void routes(RouteManager r) {
-    // r.module('/', module: SplashModule());
-    r.module('/', module: TransactionsModule());
+    r.module('/', module: SplashModule());
+    // r.module('/', module: TransactionsModule());
 
     r.module(HomeModule.routeName, module: HomeModule(), guards: [AuthGuard()]);
     r.module(TransactionsModule.routeName, module: TransactionsModule());

@@ -1,9 +1,8 @@
-import 'package:financial_app/src/modules/transactions/interector/entities/transaction_category.dart';
 import 'package:financial_app/src/modules/transactions/ui/widgets/transaction_expanse_card.dart';
 import 'package:financial_app/src/shared/widgets/general_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../interector/stores/transaction/transactions_store.dart';
+import '../../interector/stores/transactions/transactions_store.dart';
 import '../widgets/transaction_top_card.dart';
 
 class TransactionsPage extends StatefulWidget {
@@ -20,11 +19,16 @@ class _TransactionsState extends State<TransactionsPage> {
 
   @override
   void initState() {
+    store.addListener(() {});
+
+    store.fetch();
     super.initState();
   }
 
   @override
   void dispose() {
+    store.dispose();
+
     super.dispose();
   }
 
@@ -35,56 +39,48 @@ class _TransactionsState extends State<TransactionsPage> {
 
     return Scaffold(
       appBar: const GeneralAppBar(title: 'Transações'),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const TransactionTopCard(),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Monitore seus gastos',
-                    style: bodyMedium?.copyWith(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Expanded(
-                    child: GridView.count(
-                      shrinkWrap: true,
-                      crossAxisCount: 2,
-                      childAspectRatio: 1.7,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      children: const [
-                        TransactionExpanseCard(
-                          value: 500,
-                          category: TransactionCategory(
-                            color: 'C16A6A',
-                            name: 'Mercado',
+      body: ValueListenableBuilder(
+          valueListenable: store,
+          builder: (context, state, _) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TransactionTopCard(totalValue: state.totalTransactionsValue),
+                const SizedBox(height: 20),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Monitore seus gastos',
+                          style: bodyMedium?.copyWith(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TransactionExpanseCard(
-                          value: 500,
-                          category: TransactionCategory(
-                            color: 'C16A6A',
-                            name: 'Mercado',
+                        const SizedBox(height: 20),
+                        Expanded(
+                          child: GridView.count(
+                            shrinkWrap: true,
+                            crossAxisCount: 2,
+                            childAspectRatio: 1.7,
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            children: state.categoriesGrouped
+                                .map((item) =>
+                                    TransactionExpanseCard(category: item))
+                                .toList(),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
+                ),
+              ],
+            );
+          }),
     );
   }
 }

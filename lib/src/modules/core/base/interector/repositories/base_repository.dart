@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../entity/entity.dart';
 
 abstract class BaseRepository<T extends Entity> {
@@ -7,12 +8,16 @@ abstract class BaseRepository<T extends Entity> {
 
   const BaseRepository(this.firestore, {required this.collectionName});
 
-  CollectionReference getCollection() {
+  CollectionReference getCollectionRef() {
     return firestore.collection(collectionName);
   }
 
+  Future<QuerySnapshot<Object?>> getSnapshot() {
+    return getCollectionRef().get();
+  }
+
   Future<Map<String, dynamic>?> get(String id) async {
-    final reference = await getCollection().doc(id).get();
+    final reference = await getCollectionRef().doc(id).get();
 
     if (reference.exists) {
       return reference.data() as Map<String, dynamic>;
